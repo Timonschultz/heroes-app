@@ -13,7 +13,12 @@ public class GreetingController {
     private GreetingService greetingService;
 
     @GetMapping(value = "/{id}")
-    public Greeting getGreeted(@PathVariable("id") final Long id) {
+    public Greeting getGreeting(@PathVariable("id") final Long id) {
+        return greetingService.getGreeting(id);
+    }
+
+    @GetMapping(value = "/{id}/greet")
+    public String getGreeted(@PathVariable("id") final Long id) {
         return greetingService.getGreeted(id);
     }
 
@@ -21,5 +26,7 @@ public class GreetingController {
     public void saveGreeting(@RequestParam("name") final String name) {
         greetingService.addGreeting(name);
     }
+
+
 
 }

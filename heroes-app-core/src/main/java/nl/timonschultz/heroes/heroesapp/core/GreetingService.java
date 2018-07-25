@@ -16,8 +16,11 @@ public class GreetingService {
         greetingRepository.save(greetingMapper.toEntity(greetz));
     }
 
-    public Greeting getGreeted(Long id) {
+    public Greeting getGreeting(Long id) {
         return greetingMapper.toGreeting(greetingRepository.findById(id).get());
     }
 
+    public String getGreeted(Long id) {
+        return getGreeting(id).createGreeting();
+    }
 }
