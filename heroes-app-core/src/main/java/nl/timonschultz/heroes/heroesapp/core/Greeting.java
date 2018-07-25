@@ -1,7 +1,16 @@
 package nl.timonschultz.heroes.heroesapp.core;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
 public class Greeting {
 
+    private Long id;
     private final String name;
 
     public Greeting(String name) {
@@ -9,10 +18,7 @@ public class Greeting {
     }
 
     public String createGreeting() {
-        return "hello " + name + ", greetings";
+        return "hello " + name + ". My greetings to a mighty hero!";
     }
 
-    public String getName() {
-        return name;
-    }
 }

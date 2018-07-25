@@ -1,15 +1,23 @@
 package nl.timonschultz.heroes.heroesapp.core;
 
+import lombok.RequiredArgsConstructor;
+import nl.timonschultz.heroes.heroesapp.persistence.GreetingRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class GreetingService {
 
-    public GreetingService() {
+    private final GreetingRepository greetingRepository;
+    private final GreetingMapper greetingMapper;
+
+    public void addGreeting(String name) {
+        Greeting greetz = new Greeting(name);
+        greetingRepository.save(greetingMapper.toEntity(greetz));
     }
 
-    public Greeting createGreeting(String name) {
-        return new Greeting(name);
+    public Greeting getGreeted(Long id) {
+        return greetingMapper.toGreeting(greetingRepository.findById(id).get());
     }
 
 }

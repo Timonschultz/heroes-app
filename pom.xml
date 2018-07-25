@@ -19,6 +19,7 @@
         <module>heroes-app-boot</module>
         <module>heroes-app-api</module>
         <module>heroes-app-core</module>
+        <module>heroes-app-persistence</module>
     </modules>
 
     <properties>
@@ -43,6 +44,17 @@
                 <artifactId>heroes-app-core</artifactId>
                 <groupId>nl.timonschultz.heroes</groupId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>heroes-app-persistence</artifactId>
+                <groupId>nl.timonschultz.heroes</groupId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.0</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
