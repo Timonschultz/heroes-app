@@ -20,7 +20,7 @@ public class TalentModelMapper {
                 .title(talentInputModel.getTitle())
                 .description(talentInputModel.getDescription())
                 .icon(talentInputModel.getIcon())
-                .iconUrl(iconModelMapper.toEntity(talentInputModel.getIconModel()))
+                .iconUrl(iconModelMapper.toEntity(talentInputModel.getIconUrl()))
                 .ability(talentInputModel.getAbility())
                 .sort(talentInputModel.getSort())
                 .cooldown(talentInputModel.getCooldown())

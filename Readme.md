@@ -13,7 +13,7 @@ Build a docker image:
 > docker build -t hero .
 
 Run the image: 
-> docker run --link mypostgres p 8080:8080 hero
+> docker run --link mypostgres -p 8080:8080 hero
 
 Now on http://localhost:8080/greetings you can put a post request with a name as a parameter (eg. http://localhost:8080/greetings/?name=timon)\
 You can now make 2 get calls: \

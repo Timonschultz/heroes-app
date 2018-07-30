@@ -21,7 +21,7 @@ public class HeroModelMapper {
                 .shortName(heroInputModel.getShortName())
                 .attributeId(heroInputModel.getAttributeId())
                 .translations(heroInputModel.getTranslations())
-                .icon(iconModelMapper.toEntity(heroInputModel.getIconModel()))
+                .icon(iconModelMapper.toEntity(heroInputModel.getIconUrl()))
                 .role(heroInputModel.getRole())
                 .type(heroInputModel.getType())
                 .releaseDate(heroInputModel.getReleaseDate())

@@ -6,10 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import nl.timonschultz.heroes.heroesapp.persistence.abilities.AbilityEntity;
 import nl.timonschultz.heroes.heroesapp.persistence.common.HasId;
-import nl.timonschultz.heroes.heroesapp.persistence.icon.IconEntity;
+import nl.timonschultz.heroes.heroesapp.persistence.icon.HeroIconEntity;
 import nl.timonschultz.heroes.heroesapp.persistence.talent.TalentEntity;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity(name = "HEROES")
@@ -26,17 +30,17 @@ public class HeroEntity extends HasId<Long> {
     @ElementCollection
     private List<String> translations;
 
-    @OneToOne
-    private IconEntity icon;
+    @OneToOne(cascade = CascadeType.ALL)
+    private HeroIconEntity icon;
 
     private String role;
     private String type;
     private String releaseDate;
 
-    @OneToMany(mappedBy = "id", cascade = {CascadeType.PERSIST})
+    @OneToMany(cascade = CascadeType.ALL)
     private List<AbilityEntity> abilities;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<TalentEntity> talents;
 
 }

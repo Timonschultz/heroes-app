@@ -1,13 +1,14 @@
-package nl.timonschultz.heroes.heroesapp.core.map.service;
+package nl.timonschultz.heroes.heroesapp.core.heroes.service;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nl.timonschultz.heroes.heroesapp.core.map.mapper.MapModelMapper;
-import nl.timonschultz.heroes.heroesapp.core.map.model.MapInputModel;
-import nl.timonschultz.heroes.heroesapp.persistence.map.MapEntityRepository;
+import nl.timonschultz.heroes.heroesapp.core.heroes.mapper.HeroModelMapper;
+import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroInputModel;
+import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,25 +24,24 @@ import java.nio.charset.StandardCharsets;
 @Service
 @AllArgsConstructor
 @Transactional(propagation = Propagation.REQUIRED)
-public class MapService {
+public class HeroService {
 
-    private final MapModelMapper mapModelMapper;
-    private final MapEntityRepository mapEntityRepository;
+    private HeroEntityRepository heroEntityRepository;
+    private HeroModelMapper heroModelMapper;
 
     public void add() {
 
-        try (InputStream is = new URL("http://hotsapi.net/api/v1/maps").openStream()) {
+        try (InputStream is = new URL("http://hotsapi.net/api/v1/heroes").openStream()) {
 
             JsonReader reader = new JsonReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            Gson gson = new GsonBuilder().create();
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 
             reader.beginArray();
             while (reader.hasNext()) {
-                MapInputModel model = gson.fromJson(reader, MapInputModel.class);
-                mapEntityRepository.save(mapModelMapper.toEntity(model));
+                HeroInputModel model = gson.fromJson(reader, HeroInputModel.class);
+                heroEntityRepository.save(heroModelMapper.toEntity(model));
             }
             reader.close();
-
         } catch (MalformedURLException e) {
             log.error("MalformedURLException" + e.getMessage());
         } catch (IOException e) {

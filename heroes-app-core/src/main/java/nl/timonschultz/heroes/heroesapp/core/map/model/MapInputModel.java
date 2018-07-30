@@ -11,4 +11,5 @@ public class MapInputModel {
 
     private String name;
     private List<String> translations;
+
 }
