@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.timonschultz.heroes.heroesapp.core.heroes.mapper.HeroModelMapper;
 import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroInputModel;
+import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroNameModel;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,6 +20,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -49,4 +51,9 @@ public class HeroService {
         }
     }
 
+    public List<HeroNameModel> getHeroNames() {
+        List<String> list = heroEntityRepository.getAllNames();
+        System.out.println(list);
+        return null;
+    }
 }
