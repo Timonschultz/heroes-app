@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.timonschultz.heroes.heroesapp.core.heroes.mapper.HeroModelMapper;
 import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroInputModel;
+import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroServiceModel;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntityRepository;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroNameAndId;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,7 @@ public class HeroService {
 		return heroEntityRepository.getIdAndName();
 	}
 	
-//	public HeroServiceModel getHero(Long id) {
-//		return heroModelMapper.toServiceModel(heroEntityRepository.findById(id));
-//	}
+	public HeroServiceModel getHero(Long id) {
+		return heroModelMapper.toServiceModel(heroEntityRepository.find(id));
+	}
 }

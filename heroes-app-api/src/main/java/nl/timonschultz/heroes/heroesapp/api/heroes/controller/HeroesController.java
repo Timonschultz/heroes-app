@@ -24,8 +24,8 @@ public class HeroesController {
 		return heroService.getHeroNames();
 	}
 	
-		@GetMapping("/id/{id}")
-		public HeroServiceModel getHero(@PathVariable("id") Long id) {
-			return heroService.getHero(id);
-		}
+	@GetMapping("/id/{id}")
+	public HeroServiceModel getHero(@PathVariable("id") Long id) {
+		return heroService.getHero(id);
+	}
 }

@@ -19,6 +19,7 @@ import java.util.List;
 @Builder
 @Entity(name = "HEROES")
 @AllArgsConstructor
+@NoArgsConstructor
 public class HeroEntity extends HasId<Long> {
 	
 	private String name;

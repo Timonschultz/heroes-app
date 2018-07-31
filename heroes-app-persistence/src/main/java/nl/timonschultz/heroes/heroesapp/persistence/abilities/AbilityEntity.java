@@ -3,14 +3,15 @@ package nl.timonschultz.heroes.heroesapp.persistence.abilities;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import nl.timonschultz.heroes.heroesapp.persistence.common.HasId;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "ABILITIES")
 public class AbilityEntity extends HasId<Long> {
 
