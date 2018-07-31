@@ -1,20 +1,13 @@
 package nl.timonschultz.heroes.heroesapp.core.abilities.model;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
-public class AbilityInputModel {
-
-    private String owner;
-    private String name;
-    private String title;
-    private String description;
-    private String icon;
-    private String hotkey;
-    private int cooldown;
-    private int manaCost;
-    private Boolean trait;
-
+public class AbilityInputModel extends AbilityModel {
+	
+	@Builder
+	public AbilityInputModel(String owner, String name, String title, String description, String icon, String hotkey, int cooldown, int manaCost, Boolean trait) {
+		super(owner, name, title, description, icon, hotkey, cooldown, manaCost, trait);
+	}
 }

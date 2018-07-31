@@ -1,22 +1,12 @@
 package nl.timonschultz.heroes.heroesapp.core.talent.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
 import nl.timonschultz.heroes.heroesapp.core.icon.model.TalentIconModel;
 
-@Getter
-@AllArgsConstructor
-public class TalentInputModel {
-
-    private String name;
-    private String title;
-    private String description;
-    private String icon;
-    private TalentIconModel iconUrl;
-    private String ability;
-    private int sort;
-    private int cooldown;
-    private int manaCost;
-    private int level;
-
+public class TalentInputModel extends TalentModel {
+	
+	@Builder
+	public TalentInputModel(String name, String title, String description, String icon, TalentIconModel iconUrl, String ability, int sort, int cooldown, int manaCost, int level) {
+		super(name, title, description, icon, iconUrl, ability, sort, cooldown, manaCost, level);
+	}
 }
