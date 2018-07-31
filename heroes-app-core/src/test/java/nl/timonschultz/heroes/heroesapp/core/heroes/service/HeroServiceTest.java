@@ -2,6 +2,7 @@ package nl.timonschultz.heroes.heroesapp.core.heroes.service;
 
 import nl.timonschultz.heroes.heroesapp.core.heroes.mapper.HeroModelMapper;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntityRepository;
+import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroNameAndId;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,10 +22,10 @@ public class HeroServiceTest {
     private HeroService heroService;
 
 
-    @Test
-    public void getAllNames() {
-        List<String> list = heroEntityRepository.getAllNames();
-        System.out.println(list);
-    }
+//    @Test
+//    public void getAllNames() {
+//        List<String[]> list = heroEntityRepository.getIdAndName();
+//        System.out.println(list);
+//    }
 
 }

@@ -3,14 +3,11 @@ package nl.timonschultz.heroes.heroesapp.core.heroes.mapper;
 import lombok.RequiredArgsConstructor;
 import nl.timonschultz.heroes.heroesapp.core.abilities.mapper.AbilityModelMapper;
 import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroInputModel;
-import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroNameModel;
+import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroServiceModel;
 import nl.timonschultz.heroes.heroesapp.core.icon.mapper.IconModelMapper;
 import nl.timonschultz.heroes.heroesapp.core.talent.mapper.TalentModelMapper;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntity;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -33,15 +30,20 @@ public class HeroModelMapper {
                 .talents(talentModelMapper.toEntityList(heroInputModel.getTalents()))
                 .build();
     }
-
-    public List<HeroNameModel> toHeroNameList(List<HeroEntity> heroEntities) {
-        List<HeroNameModel> heroNameModelList = new ArrayList<>();
-        heroEntities.forEach(heroEntity -> heroNameModelList.add(getHeroNameModel(heroEntity)));
-        return heroNameModelList;
+    
+    //TODO: use Optionals
+    public HeroServiceModel toServiceModel(HeroEntity heroEntity) {
+        return HeroServiceModel.builder().name(heroEntity.getName())
+				.shortName(heroEntity.getShortName())
+				.attributeId(heroEntity.getAttributeId())
+				.translations(heroEntity.getTranslations())
+				.iconUrl(heroEntity.getIcon())
+				
+				
     }
-
-    private HeroNameModel getHeroNameModel(HeroEntity heroEntity) {
-        return HeroNameModel.builder().id(heroEntity.getId()).name(heroEntity.getName()).build();
-    }
+    
+    //    public HeroServiceModel getHero(final HeroEntity heroEntity) {
+//        return HeroServiceModel.builder().id(heroEntity.getId())
+//    }
 
 }
