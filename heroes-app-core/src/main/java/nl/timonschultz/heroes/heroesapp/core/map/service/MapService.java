@@ -30,7 +30,7 @@ public class MapService {
 	private final MapModelMapper mapModelMapper;
 	private final MapEntityRepository mapEntityRepository;
 	
-	public void add() {
+	public void importMaps() {
 		
 		try (InputStream is = new URL("http://hotsapi.net/api/v1/maps").openStream()) {
 			

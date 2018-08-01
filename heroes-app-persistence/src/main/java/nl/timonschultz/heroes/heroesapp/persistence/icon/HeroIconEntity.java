@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import nl.timonschultz.heroes.heroesapp.persistence.common.HasId;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 @Getter
@@ -13,8 +15,12 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity(name = "HERO_ICON")
 public class HeroIconEntity extends HasId<Long> {
-
-    String icon;
+	
+	private String icon;
+	
+	@Basic
+	@Setter
+	private byte[] iconImage;
 }
 
 

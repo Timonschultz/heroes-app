@@ -23,19 +23,7 @@ public class HeroesController {
 	}
 	
 	@GetMapping("/{identifier}")
-	public HeroServiceModel getHeroSelector(@PathVariable("identifier") String identifier) {
-		if (identifier.matches("^[\\d]+$")) {
-			return getHero(Long.parseLong(identifier));
-		} else {
-			return getHero(identifier);
-		}
-	}
-	
-	private HeroServiceModel getHero(String name) {
-		return heroService.getHero(name);
-	}
-	
-	private HeroServiceModel getHero(Long id) {
-		return heroService.getHero(id);
+	public HeroServiceModel getHero(@PathVariable("identifier") String identifier) {
+		return heroService.getHero(identifier);
 	}
 }

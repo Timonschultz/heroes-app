@@ -28,7 +28,8 @@ public class HeroEntity extends HasId<Long> {
 	
 	@ElementCollection private List<String> translations;
 	
-	@OneToOne(cascade = CascadeType.ALL) private HeroIconEntity icon;
+	@OneToOne(cascade = CascadeType.ALL)
+	private HeroIconEntity icon;
 	
 	private String role;
 	private String type;

@@ -31,7 +31,7 @@ public class HeroService {
 	private HeroEntityRepository heroEntityRepository;
 	private HeroModelMapper heroModelMapper;
 	
-	public void add() {
+	public void importHeroes() {
 		
 		try (InputStream is = new URL("http://hotsapi.net/api/v1/heroes").openStream()) {
 			
@@ -55,11 +55,11 @@ public class HeroService {
 		return heroEntityRepository.getIdAndName();
 	}
 	
-	public HeroServiceModel getHero(Long id) {
-		return heroModelMapper.toServiceModel(heroEntityRepository.find(id));
+	public HeroServiceModel getHero(String identifier) {
+		if (identifier.matches("^[\\d]+$")) {
+			return heroModelMapper.toServiceModel(heroEntityRepository.find(Long.parseLong(identifier)));
+		} else {
+			return heroModelMapper.toServiceModel(heroEntityRepository.find(identifier));
+		}
 	}
-	public HeroServiceModel getHero(String shortName) {
-		return heroModelMapper.toServiceModel(heroEntityRepository.find(shortName));
-	}
-	
 }
