@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ICONS")
+@Entity(name = "HERO_ICON")
 public class HeroIconEntity extends HasId<Long> {
 
     String icon;

@@ -20,10 +20,10 @@ public class IconModelMapper {
 	}
 	
 	public HeroIconServiceModel toServiceModel(HeroIconEntity heroIconEntity) {
-		return HeroIconServiceModel.builder().icon(heroIconEntity.getIcon()).build();
+		return HeroIconServiceModel.builder().id(heroIconEntity.getId()).icon(heroIconEntity.getIcon()).build();
 	}
 	
 	public TalentIconServiceModel toServiceModel(TalentIconEntity talentIconEntity) {
-		return TalentIconServiceModel.builder().icon(talentIconEntity.getIcon()).build();
+		return TalentIconServiceModel.builder().id(talentIconEntity.getId()).icon(talentIconEntity.getIcon()).build();
 	}
 }

@@ -28,8 +28,9 @@ public class HeroModelMapper {
 	
 	//TODO: use Optionals
 	public HeroServiceModel toServiceModel(HeroEntity heroEntity) {
-		return HeroServiceModel.builder().name(heroEntity.getName()).shortName(heroEntity.getShortName())
-		                       .attributeId(heroEntity.getAttributeId()).translations(heroEntity.getTranslations())
+		return HeroServiceModel.builder().id(heroEntity.getId()).name(heroEntity.getName())
+		                       .shortName(heroEntity.getShortName()).attributeId(heroEntity.getAttributeId())
+		                       .translations(heroEntity.getTranslations())
 		                       .iconUrl(iconModelMapper.toServiceModel(heroEntity.getIcon())).role(heroEntity.getRole())
 		                       .type(heroEntity.getType()).releaseDate(heroEntity.getReleaseDate())
 		                       .abilities(abilityModelMapper.toServiceModelList(heroEntity.getAbilities()))
