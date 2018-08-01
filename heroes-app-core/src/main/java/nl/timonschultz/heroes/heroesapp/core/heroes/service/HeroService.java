@@ -10,7 +10,7 @@ import nl.timonschultz.heroes.heroesapp.core.heroes.mapper.HeroModelMapper;
 import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroInputModel;
 import nl.timonschultz.heroes.heroesapp.core.heroes.model.HeroServiceModel;
 import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroEntityRepository;
-import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroNameAndId;
+import nl.timonschultz.heroes.heroesapp.persistence.heroes.HeroNameAndIdAndShortName;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,11 +51,15 @@ public class HeroService {
 		}
 	}
 	
-	public List<HeroNameAndId> getHeroNames() {
+	public List<HeroNameAndIdAndShortName> getHeroNames() {
 		return heroEntityRepository.getIdAndName();
 	}
 	
 	public HeroServiceModel getHero(Long id) {
 		return heroModelMapper.toServiceModel(heroEntityRepository.find(id));
 	}
+	public HeroServiceModel getHero(String shortName) {
+		return heroModelMapper.toServiceModel(heroEntityRepository.find(shortName));
+	}
+	
 }

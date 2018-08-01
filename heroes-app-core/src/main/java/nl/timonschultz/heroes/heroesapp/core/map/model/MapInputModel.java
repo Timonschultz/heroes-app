@@ -1,15 +1,13 @@
 package nl.timonschultz.heroes.heroesapp.core.map.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
+import lombok.Builder;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
-public class MapInputModel {
-
-    private String name;
-    private List<String> translations;
-
+public class MapInputModel extends MapModel {
+    
+    @Builder
+    public MapInputModel(String name, List<String> translations) {
+        super(name, translations);
+    }
+    
 }
