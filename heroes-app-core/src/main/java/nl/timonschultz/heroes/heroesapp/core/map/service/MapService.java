@@ -13,6 +13,7 @@ import nl.timonschultz.heroes.heroesapp.persistence.map.MapNameAndId;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,35 +27,39 @@ import java.util.List;
 @AllArgsConstructor
 @Transactional(propagation = Propagation.REQUIRED)
 public class MapService {
-	
-	private final MapModelMapper mapModelMapper;
-	private final MapEntityRepository mapEntityRepository;
-	
-	public void importMaps() {
-		
-		try (InputStream is = new URL("http://hotsapi.net/api/v1/maps").openStream()) {
-			
-			JsonReader reader = new JsonReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-			Gson gson = new GsonBuilder().create();
-			
-			reader.beginArray();
-			while (reader.hasNext()) {
-				MapInputModel model = gson.fromJson(reader, MapInputModel.class);
-				mapEntityRepository.save(mapModelMapper.toEntity(model));
-			}
-			reader.close();
-		} catch (MalformedURLException e) {
-			log.error("MalformedURLException" + e.getMessage());
-		} catch (IOException e) {
-			log.error("IOException" + e.getMessage());
-		}
-	}
-	
-	public List<MapNameAndId> getMapNames() {
-		return mapEntityRepository.getIdAndName();
-	}
-	
-	public MapServiceModel getMap(Long id) {
-		return mapModelMapper.toServiceModel(mapEntityRepository.find(id));
-	}
+
+    private final MapModelMapper mapModelMapper;
+    private final MapEntityRepository mapEntityRepository;
+
+    public String importMaps() {
+        int totalImported = 0;
+
+        try (InputStream is = new URL("http://hotsapi.net/api/v1/maps").openStream()) {
+
+            JsonReader reader = new JsonReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            Gson gson = new GsonBuilder().create();
+
+            reader.beginArray();
+            while (reader.hasNext()) {
+                MapInputModel model = gson.fromJson(reader, MapInputModel.class);
+                mapEntityRepository.save(mapModelMapper.toEntity(model));
+                totalImported += 1;
+            }
+            reader.close();
+        } catch (MalformedURLException e) {
+            log.error("MalformedURLException" + e.getMessage());
+        } catch (IOException e) {
+            log.error("IOException" + e.getMessage());
+        }
+        log.info("Total of " + totalImported + " heroes imported.");
+        return "Total of " + totalImported + " heroes imported.";
+    }
+
+    public List<MapNameAndId> getMapNames() {
+        return mapEntityRepository.getIdAndName();
+    }
+
+    public MapServiceModel getMap(Long id) {
+        return mapModelMapper.toServiceModel(mapEntityRepository.find(id));
+    }
 }

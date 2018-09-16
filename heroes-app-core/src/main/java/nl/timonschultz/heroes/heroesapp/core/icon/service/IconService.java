@@ -29,7 +29,6 @@ public class IconService {
         stopWatch.start();
         for (long i = 1L; i <= maxHeroicons; i++) {
             getImageAndSave(getHeroIconEntity(i).getIcon(), i);
-            System.out.println(i);
         }
         stopWatch.stop();
         log.info("Attempted import for " + maxHeroicons + " heroIcons in " + stopWatch.getTotalTimeMillis() + " milliseconds.");

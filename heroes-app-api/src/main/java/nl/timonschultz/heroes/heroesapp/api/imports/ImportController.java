@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import nl.timonschultz.heroes.heroesapp.core.heroes.service.HeroService;
 import nl.timonschultz.heroes.heroesapp.core.icon.service.IconService;
 import nl.timonschultz.heroes.heroesapp.core.map.service.MapService;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +17,14 @@ public class ImportController {
     private IconService iconService;
 
     @RequestMapping(value = "/heroes")
-    public void importHeroes() {
-        heroService.importHeroes();
+    public String importHeroes() {
+        return heroService.importHeroes();
+
     }
 
     @RequestMapping(value = "/maps")
-    public void importMaps() {
-        mapService.importMaps();
+    public String importMaps() {
+        return mapService.importMaps();
     }
 
 //    @RequestMapping(value = "/icons/{identifier}")
